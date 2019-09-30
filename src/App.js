@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Homepage from './pages/Homepage'
+import createBrowserHistory from 'history/createBrowserHistory'
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { reset, themes } from "react95";
+export const history = createBrowserHistory()
+const ResetStyles = createGlobalStyle`
+  ${reset}
+`;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <ResetStyles />
+        <ThemeProvider theme={themes.default}>
+          <Homepage/>
+        </ThemeProvider>
+      </div>
+    )
+  }
 }
 
 export default App;
