@@ -8,7 +8,6 @@ const ResetStyles = createGlobalStyle`
   ${reset}
 `;
 
-
 class App extends React.Component {
   render() {
     return (
