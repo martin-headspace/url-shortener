@@ -51,7 +51,8 @@ class App extends React.Component {
     state = {
         submitState : false,
         link : '',
-        windowShow: true
+        windowShow: true,
+        doneConverting: false
     }
 
     componentDidMount = () => {
@@ -65,24 +66,33 @@ class App extends React.Component {
     onChange = () => {
         this.setState({
             link: URLStore.getURL(),
-            submitState: false
+            submitState: false,
+            doneConverting: true
         })
+        setTimeout(() => {
+            this.setState({doneConverting: false})
+        },2000)
     }
 
     onSubmit = () => {
-        this.setState({submitState: true})
         const {link} = this.state
-        if(link.includes('shorty.com/')){
-            URLActions.enlargeURL(link)
-        } else {
-            URLActions.shortenURL(link)
+        // eslint-disable-next-line
+        if (link !== '' && /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(link)) {
+            this.setState({submitState: true})
+        
+            if(link.includes('shorty.com/')){
+                URLActions.enlargeURL(link)
+            } else {
+                URLActions.shortenURL(link)
+            }
         }
+        
     }
 
     onWindowClose = () => {
         this.setState({windowShow: false})
         setTimeout(() => {
-            this.setState({windowShow: true, link: '', submitState: false})
+            this.setState({windowShow: true, link: '', submitState: false, doneConverting: false})
         },2000)
     }
     
@@ -107,7 +117,11 @@ class App extends React.Component {
                     <div style={style.button}>
                     {!this.state.submitState ? 
                         <Button onClick={this.onSubmit} style={style.button}>
-                            Convert 
+                            {!this.state.doneConverting ?
+                                "Convert"
+                            :
+                                "Converted!"
+                            }
                         </Button> :
                         <Hourglass/>
                     }
