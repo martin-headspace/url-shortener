@@ -38,14 +38,14 @@ AppDispatcher.register(function(payload){
             URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.SHORTEN_URL_RESPONSE:
-            _store.url = action.response.body
+            _store.url = action.response
             URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.ENLARGE_URL:
             URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.ENLARGE_URL_RESPONSE:
-            _store.url = action.response.body
+            _store.url = action.response
             URLStore.emit(CHANGE_EVENT)
             break
         default:
