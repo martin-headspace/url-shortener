@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage testing should render correctly in "Debug" mode 1`] = `
+<Fragment>
+  <Window
+    shadow={true}
+    style={
+      Object {
+        "left": "50%",
+        "position": "fixed",
+        "top": "50%",
+        "transform": "translate(-50%,-50%)",
+        "width": "400px",
+      }
+    }
+  >
+    <WindowHeader
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <span>
+        URL Shortener
+      </span>
+      <Button
+        active={false}
+        disabled={false}
+        fullWidth={false}
+        onClick={[Function]}
+        size="sm"
+        square={true}
+        style={
+          Object {
+            "marginRight": "-6px",
+            "marginTop": "1px",
+          }
+        }
+        type="button"
+        variant="default"
+      >
+        <span
+          style={
+            Object {
+              "fontWeight": "bold",
+              "transform": "translateY(-1px)",
+            }
+          }
+        >
+          x
+        </span>
+      </Button>
+    </WindowHeader>
+    <WindowContent>
+      <h1
+        style={
+          Object {
+            "fontFamily": "times new roman",
+            "fontSize": "3rem",
+            "marginTop": "0.5rem",
+            "textAlign": "center",
+          }
+        }
+      >
+        URL Shortener
+      </h1>
+      <p
+        style={
+          Object {
+            "fontFamily": "times new roman",
+            "marginBottom": "5px",
+            "textAlign": "center",
+          }
+        }
+      >
+         Created by 
+        <Anchor
+          href="https://www.github.com/a01334390"
+          target="_blank"
+        >
+           A01334390
+        </Anchor>
+      </p>
+      <TextArea
+        disabled={false}
+        onChange={[Function]}
+        placeholder="Place your link here..."
+        shadow={true}
+        style={
+          Object {
+            "marginTop": "3px",
+          }
+        }
+        variant="default"
+      />
+      <div
+        style={
+          Object {
+            "left": "130px",
+            "marginTop": "3px",
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          fullWidth={false}
+          onClick={[Function]}
+          size="md"
+          square={false}
+          style={
+            Object {
+              "left": "130px",
+              "marginTop": "3px",
+            }
+          }
+          type="button"
+          variant="default"
+        >
+          Convert
+        </Button>
+      </div>
+    </WindowContent>
+  </Window>
+</Fragment>
+`;
