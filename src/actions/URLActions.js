@@ -25,3 +25,5 @@ class UAC {
         URLAPI.shortenURL(url)
     }
 }
+
+export default new UAC()
