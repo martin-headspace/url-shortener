@@ -46,7 +46,8 @@ const style = {
 class App extends React.Component {
     state = {
         submitState : false,
-        link : ''
+        link : '',
+        windowShow: true
     }
 
     onSubmit = () => {
@@ -54,13 +55,18 @@ class App extends React.Component {
     }
 
     onWindowClose = () => {
-        window.open("about:blank", "_self");
-        window.close();
+        this.setState({windowShow: false})
+        setTimeout(() => {
+            this.setState({windowShow: true, link: '', submitState: false})
+        },2000)
     }
     
     render() {
         return (
-            <Window style={style.window }>
+           <>
+           {/** Defines if the window is open depending on the windowShow state */}
+            {this.state.windowShow &&
+                <Window style={style.window }>
                 <WindowHeader style={style.windowHeader}>
                     <span>URL Shortener</span>
                     <Button onClick={this.onWindowClose} style={style.buttonmenu} size={'sm'} square>
@@ -69,20 +75,22 @@ class App extends React.Component {
                 </WindowHeader>
                 <WindowContent>
                     <h1 style={style.h1}>
-                         URL Shortener 
+                        URL Shortener 
                     </h1>
                     <p style={style.p}> Created by <Anchor href="https://www.github.com/a01334390" target="_blank"> A01334390</Anchor></p>
                     <TextArea disabled={this.state.submitState} onChange={(event) => this.setState({link: event.target.value})} style={style.textarea} shadow={true} placeholder="Place your link here..."></TextArea>
                     <div style={style.button}>
                     {!this.state.submitState ? 
                         <Button onClick={this.onSubmit} style={style.button}>
-                             Convert 
+                            Convert 
                         </Button> :
                         <Hourglass/>
                     }
                     </div>
                 </WindowContent>
             </Window>
+            }
+           </>
         )
     }
 }
