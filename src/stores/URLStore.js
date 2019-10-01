@@ -20,10 +20,7 @@ var URLStore = ObjectAssign({}, EventEmitter.prototype,{
     removeChangeListener: function(cb){
         this.on(CHANGE_EVENT,cb)
     },
-    shortenURL: function() {
-        return _store.url
-    },
-    enlargeURL: function() {
+    getURL: function() {
         return _store.url
     }
 })
@@ -35,14 +32,14 @@ AppDispatcher.register(function(payload){
     var action = payload.action
     switch(action.actionType){
         case URLConstants.SHORTEN_URL:
-            URLStore.emit(CHANGE_EVENT)
+            // URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.SHORTEN_URL_RESPONSE:
-            _store.url = action.response
+            _store.url = action.response.body.body
             URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.ENLARGE_URL:
-            URLStore.emit(CHANGE_EVENT)
+            // URLStore.emit(CHANGE_EVENT)
             break
         case URLConstants.ENLARGE_URL_RESPONSE:
             _store.url = action.response
@@ -53,3 +50,5 @@ AppDispatcher.register(function(payload){
             URLStore.emit(CHANGE_EVENT)
     }
 })
+
+module.exports = URLStore

@@ -8,7 +8,7 @@ class UAC {
      * @param {String} url as a minified URL 
      */
     enlargeURL(url){
-        AppDispatcher.handleEnlargeAction({
+        AppDispatcher.enlargeURL({
             actionType: URLConstants.ENLARGE_URL
         })
         URLAPI.enlargeURL(url)
@@ -19,7 +19,7 @@ class UAC {
      * @param {String} url  as a full URL
      */
     shortenURL(url) {
-        AppDispatcher.handleShortenAction({
+        AppDispatcher.shortenURL({
             actionType: URLConstants.SHORTEN_URL
         })
         URLAPI.shortenURL(url)

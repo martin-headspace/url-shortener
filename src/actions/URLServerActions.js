@@ -8,7 +8,7 @@ module.exports = {
      * @param {URL} response with the original URL
      */
     enlargeURLResponse : function(response) {
-        AppDispatcher.handleEnlargeURLServer({
+        AppDispatcher.enlargeURLResponse({
             actionType: URLConstants.ENLARGE_URL_RESPONSE,
             response: response
         })
@@ -18,7 +18,7 @@ module.exports = {
      * @param {URL} response minified URL version of the original
      */
     shortenURLResponse : function(response) {
-        AppDispatcher.handleShortenURLServer({
+        AppDispatcher.shortenURLResponse({
             actionType: URLConstants.SHORTEN_URL_RESPONSE,
             response: response
         })

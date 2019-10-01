@@ -41,3 +41,5 @@ var URLConstants = require('../constants/URLConstants')
          action: action
      })
  }
+
+ module.exports = AppDispatcher

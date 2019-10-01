@@ -1,6 +1,10 @@
 import React from 'react'
 import { Window, WindowContent, WindowHeader, Button, Anchor, TextArea, Hourglass } from "react95"
 
+/** Flux elements */
+import URLActions from '../actions/URLActions'
+import URLStore from '../stores/URLStore'
+
 // Style JSON sheet
 const style = {
     window: {
@@ -50,8 +54,29 @@ class App extends React.Component {
         windowShow: true
     }
 
+    componentDidMount = () => {
+        URLStore.addChangeListener(this.onChange)
+    }
+
+    componentWillUnmount = () => {
+        URLStore.removeChangeListener(this.onChange)
+    }
+
+    onChange = () => {
+        this.setState({
+            link: URLStore.getURL(),
+            submitState: false
+        })
+    }
+
     onSubmit = () => {
         this.setState({submitState: true})
+        const {link} = this.state
+        if(link.includes('shorty.com/')){
+            URLActions.enlargeURL(link)
+        } else {
+            URLActions.shortenURL(link)
+        }
     }
 
     onWindowClose = () => {
@@ -78,7 +103,7 @@ class App extends React.Component {
                         URL Shortener 
                     </h1>
                     <p style={style.p}> Created by <Anchor href="https://www.github.com/a01334390" target="_blank"> A01334390</Anchor></p>
-                    <TextArea disabled={this.state.submitState} onChange={(event) => this.setState({link: event.target.value})} style={style.textarea} shadow={true} placeholder="Place your link here..."></TextArea>
+                    <TextArea value={this.state.link} disabled={this.state.submitState} onChange={(event) => this.setState({link: event.target.value})} style={style.textarea} shadow={true} placeholder="Place your link here..."></TextArea>
                     <div style={style.button}>
                     {!this.state.submitState ? 
                         <Button onClick={this.onSubmit} style={style.button}>

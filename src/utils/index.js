@@ -1,4 +1,4 @@
-var axios = require('axios')
+const superagent = require('superagent')
 var URLServerActions = require('../actions/URLServerActions')
 
 const API_FP = 'https://y1hibagjj8.execute-api.us-east-1.amazonaws.com/Prod'
@@ -11,28 +11,33 @@ class URLAPI {
      * Calls a POST Request with the URL to request a minified version of it
      * @param {String} url full URL
      */
-    async shortenURL(url) {
-        try {
-            const response = await axios.post(API_FP,{
-                url: url
+    shortenURL(url) {
+        superagent.post(API_FP)
+            .send({url: url})
+            .end((err,res)=>{
+                if(err){return alert(err)}
+                URLServerActions.shortenURLResponse(res)
             })
-            URLServerActions.shortenURLResponse(response.body)
-        } catch(error) {
-            alert(JSON.stringify(error))
-        }
     }
     /**
      * Calls a GET Request with the minified URL to get the full version
      * @param {String} url minified URL
      */
-    async enlargeURL(url) {
+    enlargeURL(url) {
         url = url.replace('shorty.com/','')
-        try {
-            const response = await axios.get(API_FP+'/?url='+url)
-            URLServerActions.enlargeURLResponse(response)
-        } catch(error) {
-            alert(JSON.stringify(error))
-        }
+        superagent.get(API_FP+'?url='+url)
+                .end((err,res) => {
+                    if(err){
+                        if(err.rawResponse !== ""){
+                            URLServerActions.enlargeURLResponse(err.rawResponse)
+                        } else {
+                            alert(err)
+                        }
+                        return
+                    }
+                    URLServerActions.enlargeURLResponse(res)
+                })
+       
     }
 }
 
