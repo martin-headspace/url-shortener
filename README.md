@@ -93,7 +93,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://www.github.com/a01334390/url-shortener/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/a01334390/url-shortener/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
